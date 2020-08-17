@@ -1,13 +1,32 @@
 # MiBus Web
-Web de la app MiBus
+Web de `MiBus`
 
-# Descripción del proyecto
-MiBus pretende ser un software de ayuda para las personas de Teruel que quieran utilizar el transporte público, concretamente sus líneas de autobús
+## Descripción del proyecto
+`MiBus` pretende ser un software de ayuda para las personas de Teruel que 
+quieran utilizar el transporte público, concretamente sus líneas de autobús
 
-Este software, tiene como objetivo principal, permitir a una persona a través de su dispositivo móvil conocer cuánto tiempo va a tardar en llegar la siguiente línea de autobús a la parada más próxima a él/ella y cuánto tardará en llegar a su destino
+Este software tiene como objetivo permitir conocer en tiempo real la ubicación de los
+autobuses de Teruel, así como de las distintas paradas
 
-Por otra parte, simulará el contenido de los distintos paneles informativos, que serían colocados en las distintas paradas, a través de una interfaz web
+Además, permitirá conocer para cada una de las paradas, los autobuses de cada 
+línea que van a pasar próximamente por ellas
 
-Además, permitirá al administrador del sistema realizar modificaciones sobre la disponibilidad de las distintas líneas de autobús o avisar de acontecimientos importantes que ocurran en la empresa gestora
+## Estado
+```diff
++ [En desarrollo]
+```
 
-Como objetivos secundarios, permitirá determinar la ubicación de todos los autobuses y de las distintas paradas, en tiempo real
+## Variables de entorno
+* APP_PORT = APP_PORT
+
+## Development Setup
+```bash
+npm i 
+npm run dev
+```
+
+## Production Setup
+```bash
+docker-compose build
+docker-compose up [-d]
+```
