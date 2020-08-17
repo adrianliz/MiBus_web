@@ -1,4 +1,9 @@
-FROM tomcat:latest
-ADD mibus_web.war /usr/local/tomcat/webapps/
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+FROM node:10
+
+WORKDIR /usr/src/mibus_web
+
+COPY . .
+RUN npm install
+
+EXPOSE 80
+CMD [ "node", "index.js" ]
