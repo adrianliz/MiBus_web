@@ -15,7 +15,7 @@ línea que van a pasar próximamente por ellas
 ```diff
 + [En desarrollo]
 ```
-Demo: [MiBus](mibus.cloudns.cl)
+Demo: [MiBus](http://mibus.cloudns.cl/)
 
 ## Variables de entorno
 * APP_PORT = APP_PORT
