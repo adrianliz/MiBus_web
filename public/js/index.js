@@ -20,7 +20,7 @@ function initMap() {
 
   setInterval(() => {
     getNextBusesStops()
-  }, 60000)
+  }, 30000)
 }
 
 function addBusesMarkers() {
@@ -108,15 +108,15 @@ async function getNextBusesStops() {
     const res2 = await fetch(`http://130.61.121.123:8000/buses/stop/${busStop.id}`)
     const nextBuses = await res2.json()
 
-    const keys = Object.keys(nextBuses)
-    if (keys.length > 0) {
+    const numNextBuses = Object.keys(nextBuses).length
+    if (numNextBuses > 0) {
       const li = document.createElement('li')
       li.classList.add('list-group-item')
 
       let textNextBuses = ''
-      for (const key of keys) {
-        console.log(nextBuses[key].carNumber + " " + nextBuses[key].busLine)
-        textNextBuses += textNextBuses + `Bus: ${nextBuses[key].carNumber} ${nextBuses[key].busLine} `
+      for (let i = 0; i < numNextBuses; i++) {
+        console.log(busStop.name + ": " + nextBuses[i].carNumber + " " + nextBuses[i].busLine)
+        textNextBuses += `Bus: ${nextBuses[i].carNumber} ${nextBuses[i].busLine} `
       }
 
       li.appendChild(document.createTextNode(`[${busStop.name}] - ${textNextBuses}`))
