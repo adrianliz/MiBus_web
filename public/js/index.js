@@ -11,11 +11,16 @@ function initMap() {
 
   addBusesMarkers()
   addBusStopsMakers()
+  getNextBusesStops()
 
   setInterval(() => {
     removeBusesMarkers()
     addBusesMarkers()
   }, 5000)
+
+  setInterval(() => {
+    getNextBusesStops()
+  }, 60000)
 }
 
 function addBusesMarkers() {
@@ -43,11 +48,11 @@ function parseBuses(buses) {
                 <div><b>Line:</b> ${bus.busLine}<div>
                 <div><b>Previous stop:</b> ${bus.previousStop}<div>
                 <div><b>Next stop:</b> ${bus.nextStop}<div>`
-    });
+    })
 
     marker.addListener('click', function () {
       infowindow.open(map, marker);
-    });
+    })
 
     markers.push(marker)
   }
@@ -81,12 +86,41 @@ function parseBusStops(busStops) {
       icon: './img/busStop.png'
     })
 
-    const infowindow = new google.maps.InfoWindow({
-      content: `<div><b>Stop:</b> ${busStop.name}<div>`
-    });
-
     marker.addListener('click', function () {
-      infowindow.open(map, marker);
-    });
+      infowindow.open(map, marker)
+    })  
+
+    let infowindow = new google.maps.InfoWindow({
+      content: `<div><b>Stop:</b> ${busStop.name}<div>`
+    })
   }
+}
+
+async function getNextBusesStops() {
+  const res1 = await fetch(`http://130.61.121.123:8000/stops`)
+  const busStops = await res1.json()
+
+  const ul = document.getElementById('nextBuses')
+  ul.innerHTML = ''
+  console.clear()
+  
+  for (let busStop of busStops) {
+    const res2 = await fetch(`http://130.61.121.123:8000/buses/stop/${busStop.id}`)
+    const nextBuses = await res2.json()
+
+    const keys = Object.keys(nextBuses)
+    if (keys.length > 0) {
+      const li = document.createElement('li')
+      li.classList.add('list-group-item')
+
+      let textNextBuses = ''
+      for (const key of keys) {
+        console.log(nextBuses[key].carNumber + " " + nextBuses[key].busLine)
+        textNextBuses += textNextBuses + `Bus: ${nextBuses[key].carNumber} ${nextBuses[key].busLine} `
+      }
+
+      li.appendChild(document.createTextNode(`[${busStop.name}] - ${textNextBuses}`))
+      ul.appendChild(li)
+    }
+  } 
 }
