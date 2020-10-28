@@ -100,27 +100,20 @@ async function getNextBusesStops() {
   const res1 = await fetch(`http://130.61.121.123:8000/stops`)
   const busStops = await res1.json()
 
-  const ul = document.getElementById('nextBuses')
-  ul.innerHTML = ''
-  console.clear()
+  const tbody = document.getElementById('nextBuses').getElementsByTagName('tbody')[0]
+  tbody.innerHTML = ''
   
   for (let busStop of busStops) {
     const res2 = await fetch(`http://130.61.121.123:8000/buses/stop/${busStop.id}`)
     const nextBuses = await res2.json()
 
-    const numNextBuses = Object.keys(nextBuses).length
-    if (numNextBuses > 0) {
-      const li = document.createElement('li')
-      li.classList.add('list-group-item')
+    for (let nextBus of nextBuses) {
+      let row = tbody.insertRow()
+      let cellStop = row.insertCell()
+      let cellBus = row.insertCell()
 
-      let textNextBuses = ''
-      for (let i = 0; i < numNextBuses; i++) {
-        console.log(busStop.name + ": " + nextBuses[i].carNumber + " " + nextBuses[i].busLine)
-        textNextBuses += `Bus: ${nextBuses[i].carNumber} ${nextBuses[i].busLine} `
-      }
-
-      li.appendChild(document.createTextNode(`[${busStop.name}] - ${textNextBuses}`))
-      ul.appendChild(li)
+      cellStop.innerHTML = busStop.name
+      cellBus.innerHTML = nextBus.carNumber + " " + nextBus.busLine
     }
   } 
 }
