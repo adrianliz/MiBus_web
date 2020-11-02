@@ -6,4 +6,4 @@ COPY . .
 
 RUN npm install && npm run build && npm i -g serve
 
-CMD ["serve", "-s", "build", "-l", ${APP_PORT}]
+CMD [ "serve", "-s", "build", "-l", $APP_PORT ]
