@@ -1,14 +1,11 @@
-require('dotenv').config();
-const express = require('express')
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const app = express()
-app.use(express.static('public'));
-
-app.get('/', (req, res) => {
-  res.render('index')
-})
-
-const APP_PORT = process.env.APP_PORT
-app.listen(APP_PORT, () => {
-  console.log(`Server running on ${APP_PORT}`);
-})
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);

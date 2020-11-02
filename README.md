@@ -1,5 +1,5 @@
 # MiBus Web
-Web de `MiBus`
+Web de `MiBus` usando React
 
 ## Descripción del proyecto
 `MiBus` pretende ser un software de ayuda para las personas de Teruel que 
@@ -17,17 +17,19 @@ línea que van a pasar próximamente por ellas
 ```
 Demo: [MiBus](http://mibus.cloudns.cl/)
 
-## Variables de entorno
-* APP_PORT = APP_PORT
+## Variables de entorno development
+* REACT_APP_MIBUS_API = REACT_APP_MIBUS_API
+* REACT_APP_REFRESH_NEXT_BUSES = REACT_APP_REFRESH_NEXT_BUSES
+* REACT_APP_REFRESH_MARKERS = REACT_APP_REFRESH_MARKERS
+* APP_PORT = APP_PORT -> Nota: Solo es necesaria en un entorno de producción con Docker
 
 ## Development Setup
 ```bash
-npm i 
-npm run dev
+npm start
 ```
 
 ## Production Setup
 ```bash
 docker-compose build
-docker-compose up [-d]
+docker-compose start
 ```

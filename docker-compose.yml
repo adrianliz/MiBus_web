@@ -1,8 +1,14 @@
-version: '3.1'
+version: '3'
+
 services:
-  web:
+  mibus_web:
     build: .
+    image: mibus_web
+    container_name: mibus_web
     environment:
+      REACT_APP_MIBUS_API: ${REACT_APP_MIBUS_API}
+      REACT_APP_REFRESH_NEXT_BUSES: ${REACT_APP_REFRESH_NEXT_BUSES}
+      REACT_APP_REFRESH_MARKERS: ${REACT_APP_REFRESH_MARKERS}
       APP_PORT: ${APP_PORT}
     ports: 
       - "80:${APP_PORT}"
