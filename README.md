@@ -15,7 +15,7 @@ línea que van a pasar próximamente por ellas
 ```diff
 + [En desarrollo]
 ```
-Demo: [MiBus](http://mibusteruel.tk/)
+Demo: [MiBus](http://www.mibusteruel.es/)
 
 ## Variables de entorno
 * REACT_APP_MIBUS_API = REACT_APP_MIBUS_API
