@@ -1,6 +1,10 @@
 * {
-  background: gray;
   margin: 0;
   padding: 0;
   border: 0;
+  color: #ffffff;
+}
+
+#root, .popup {
+  background: #100E17 !important;
 }

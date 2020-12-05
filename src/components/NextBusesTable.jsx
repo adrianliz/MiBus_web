@@ -4,7 +4,7 @@ import NextBusesRow from './NextBusesRow';
 import NextBusesHead from './NextBusesHead';
 import Loading from './Loading';
 import { styles } from '../common/constants';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Table, Col, Row } from 'react-bootstrap';
 import { css } from 'aphrodite';
 
 class NextBusesTable extends React.Component {
@@ -40,13 +40,13 @@ class NextBusesTable extends React.Component {
 
         for (const nextBusStop of nextBusesStop) {
           refreshedNextBuses.push({
-            "stopName": stop.name, 
-            "carNumber": nextBusStop.carNumber, 
+            "stopName": stop.name,
+            "carNumber": nextBusStop.carNumber,
             "busLine": nextBusStop.busLine
           });
         }
       }
-      
+
       this.setState({ loadingNextBuses: false, nextBuses: refreshedNextBuses });
     } catch (err) {
       console.error(err);
@@ -60,19 +60,24 @@ class NextBusesTable extends React.Component {
   render() {
     return (
       <Container>
-        <h1 className={`mb-5 display-4 text-center ${css(styles.pulse)}`}>Próximos autobuses</h1>
-        {this.state.loadingNextBuses
-          ? <Loading text="Loading.." />
-          : 
-            <Table className={`text-center ${css(styles.bounceInLeft)}`} responsive striped 
-                   bordered hover variant="dark">
-              <NextBusesHead />
-              <tbody>
-                {this.state.nextBuses.map((nextBus, index) => 
-                  <NextBusesRow key={index} colNames={this.getColNames()} bus={nextBus} />)}
-              </tbody>             
-            </Table>
-        }
+        <Col>
+          <Row className="justify-content-center text-center m-5">
+            <div className={`display-4 ${css(styles.bounceInLeft)}`}>Próximos autobuses</div>
+          </Row>
+          {this.state.loadingNextBuses
+            ? <Loading text="Loading..." />
+            :
+              <Row>
+                <Table className={`text-center ${css(styles.fadeIn)}`} responsive>
+                  <NextBusesHead />
+                  <tbody>
+                    {this.state.nextBuses.map((nextBus, index) =>
+                      <NextBusesRow key={index} colNames={this.getColNames()} bus={nextBus} />)}
+                  </tbody>
+                </Table>
+              </Row>
+          }
+        </Col>
       </Container>
     );
   }

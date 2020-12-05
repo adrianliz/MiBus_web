@@ -1,11 +1,13 @@
 import React from 'react';
-import { Container, Spinner } from 'react-bootstrap';
+import { Container, Row, Spinner } from 'react-bootstrap';
 
 const Loading = (props) => (
   <Container className="text-center mx-auto">
-    <Spinner animation="border" variant="primary" className="mx-auto">
-      <span className="sr-only">{props.text}</span>
-    </Spinner>
+    <Row>
+      <Spinner role="status" animation="grow" className="bg-white mx-auto">
+        <span className="sr-only">{props.text}</span>
+      </Spinner>
+    </Row>
   </Container>
 );
 

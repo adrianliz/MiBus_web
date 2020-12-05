@@ -18,7 +18,9 @@ const App = () => {
             className="d-inline-block align-top"
           />
         </NavbarBrand>
-        <h4 className="text-center bold mb-0">Urbanos de Teruel</h4>
+        <Navbar.Collapse>
+          <h1 className="text-center">Urbanos de Teruel</h1>
+        </Navbar.Collapse>
       </Navbar>
       <NextBusesTable />
       <BusesMap center={MAP_CENTER} zoom={MAP_ZOOM} />

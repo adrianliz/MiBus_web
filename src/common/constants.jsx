@@ -1,6 +1,6 @@
 import { Icon } from "leaflet";
 import { StyleSheet } from 'aphrodite';
-import { pulse, bounceInLeft } from 'react-animations';
+import { bounceInLeft, fadeIn } from 'react-animations';
 
 export const NEXT_BUSES_COLS = ["Parada", "Bus", "Línea"];
 
@@ -18,16 +18,16 @@ export const BUS_ICON = new Icon({
 });
 
 export const styles = StyleSheet.create({
-  leafletContainer: {
+  busesMap: {
     width: '100%',
     height: '100vh'
   },
-  pulse: {
-    animationName: pulse,
-    animationDuration: '1s'
-  },
   bounceInLeft: {
     animationName: bounceInLeft,
+    animationDuration: '1s'
+  },
+  fadeIn: {
+    animationName: fadeIn,
     animationDuration: '1s'
   }
 });
